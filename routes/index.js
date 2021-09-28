@@ -2,7 +2,7 @@ var express = require('express');
 const { title } = require('process');
 var router = express.Router();
 
-const items = [
+let items = [
   {
     id: 1,
     title: 'Clean youself',
@@ -26,8 +26,15 @@ router.get('/', function (req, res) {
 
 });
 
+/* DELETE ITEM */
+router.post('/item/:id/delete', function (req, res) {
+  const itemId = parseInt(req.params.id);
+  items = items.filter(item => item.id !== itemId);
+  res.redirect('/');
+})
+
 /* NEW ITEM */
-router.post('/add-item', function (req, res) {
+router.post('/item/add', function (req, res) {
   const newItem = req.body;
   newItem.id = 0;
 
