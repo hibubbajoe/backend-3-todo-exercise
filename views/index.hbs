@@ -1,2 +1,7 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+
+<ul class="todo_list">
+    {{#each items}}
+    <li>{{this.title}}</li>
+    {{/each}}
+</ul>
