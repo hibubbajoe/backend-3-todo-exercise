@@ -1,5 +1,11 @@
 <h1>{{title}}</h1>
 
+<form action="/add-item" method="POST">
+    <input type="text" name="title" id="title" placeholder="title"><br>
+    <input type="text" name="body" id="body" placeholder="body">
+    <input type="submit" value="save">
+</form>
+
 <ul class="todo_list">
     {{#each items}}
     <li><a href="/item/{{this.id}}">{{this.title}}</a></li>

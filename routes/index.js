@@ -21,23 +21,41 @@ const items = [
 ]
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
   res.render('index', { title: 'Todo', items: items });
+
 });
+
+/* NEW ITEM */
+router.post('/add-item', function (req, res) {
+  const newItem = req.body;
+  newItem.id = 0;
+
+  items.forEach((item) => {
+    if (newItem.id <= item.id) {
+      newItem.id = item.id;
+    }
+  })
+  newItem.id++
+
+  items.push(newItem)
+  res.redirect('/');
+})
 
 /* UPDATE ITEM */
-router.get('/item/:id', function (req, res, next) {
+router.get('/item/:id', function (req, res) {
   const itemId = parseInt(req.params.id);
   const item = items.find(item => item.id === itemId);
+
   res.render('item', { item: item });
-
-
 });
 
-router.post('/item/:id', function (req, res, next) {
+router.post('/item/:id', function (req, res) {
   const itemId = parseInt(req.params.id);
   const item = items.find(item => item.id === itemId);
+
   const { title, body } = req.body;
+
   item.title = title;
   item.body = body;
 
