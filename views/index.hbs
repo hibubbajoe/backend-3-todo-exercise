@@ -2,6 +2,6 @@
 
 <ul class="todo_list">
     {{#each items}}
-    <li>{{this.title}}</li>
+    <li><a href="/item/{{this.id}}">{{this.title}}</a></li>
     {{/each}}
 </ul>
